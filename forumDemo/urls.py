@@ -13,13 +13,17 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+
+from django.conf.urls import url,include
 from django.contrib import admin
 
 import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^article/',include('article.urls')),
+    # r'^article/'代表以article开头的总的urls;'article.urls'代表子的urls,写在article模块下的urls.py中
+    #/article/...any...这一类的访问路径由子菜单article.urls来处理/article/后面的部分
     url(r'^$',views.index),
 ]
 

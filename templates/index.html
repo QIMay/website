@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="col-xs-12 col-md-10">
+    {% for b in blocks %}
+    <!--为了化简重复的代码,用类似于循环的形式-->
+    <!--在HTML模板中定义一个变量blocks,值为views中的block_infos-->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a href="/article/list/{{ b.id }}" style="font-size:16px;">{{ b.block_name }}</a>
+            <!--点击block的名称返回该板块下的文章列表-->
+            <span class="pull-right">{{ b.manager_name }}</span>
+        </div>
+        <div class="panel-body">
+            {{ b.block_description }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="col-xs-12 col-md-2">
+    <div class="well well-lg">匿名用户,请登陆</div>
+</div>
+{% endblock %}
+
+
+
