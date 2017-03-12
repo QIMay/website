@@ -16,6 +16,7 @@ Including another URLconf
 
 from django.conf.urls import url,include
 from django.contrib import admin
+from views import register
 
 import views
 
@@ -25,6 +26,7 @@ urlpatterns = [
     # r'^article/'代表以article开头的总的urls;'article.urls'代表子的urls,写在article模块下的urls.py中
     #/article/...any...这一类的访问路径由子菜单article.urls来处理/article/后面的部分
     url(r'^$',views.index),
+    url(r'^register',register)
 ]
 
 
