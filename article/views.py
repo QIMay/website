@@ -4,6 +4,7 @@ from block.models import Block
 from .models import Article
 from .forms import ArticleForm
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
 
 def article_list(request, block_id):
@@ -24,7 +25,7 @@ def article_list(request, block_id):
                   {"articles": articles_objs, "b": block, "page_no": page_no, "page": page,
                    "page_links": page_links, "p": p})
 
-
+@login_required
 def article_create(request, block_id):
     block_id = int(block_id)
     block = Block.objects.get(id=block_id)
@@ -34,6 +35,7 @@ def article_create(request, block_id):
         form = ArticleForm(request.POST)
         if form.is_valid():
             article = form.save(commit=False)
+            article.owner = request.user
             article.block = block
             article.article_status = 0
             article.save()

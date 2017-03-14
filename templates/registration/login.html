@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="col-xs-12 col-md-12">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">登陆</h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal" method="POST">{% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}"/>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">用户名</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="User name" name="username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">密码</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" placeholder="Password" name="password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <a href="/">
+                            <button type="submit" class="btn btn-primary">登陆</button>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="panel-footer">
+            <a href="/register">还没有账户?快去注册一个吧</a>
+            <a class="pull-right" href="/accounts/password_reset">忘记密码</a>
+        </div>
+
+    </div>
+</div>
+<div class="col-xs-12 col-md-12">
+    {% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+    <div class="alert alert-danger">{{ error }}</div>
+    {% endfor %}
+    {% endif %}
+    {% if form.username.errors %}
+    {% for error in form.username.errors %}
+    <div class="alert alert-danger">用户名:{{ error }}</div>
+    {% endfor %}
+    {% endif %}
+    {% if form.password.errors %}
+    {% for error in form.password.errors %}
+    <div class="alert alert-danger">密码:{{ error }}</div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+{% endblock %}

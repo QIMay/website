@@ -20,6 +20,7 @@
                 <th>内容</th>
                 <th>创建时间</th>
                 <th>最后更新时间</th>
+                <th>作者</th>
             </tr>
             </thead>
             <tbody>
@@ -30,6 +31,7 @@
                 <td>{{ article.article_content }}</td>
                 <td>{{ article.create_timestamp|date:"Y-m-d P" }}</td>
                 <td>{{ article.last_update_timestamp|date:"Y-m-d P" }}</td>
+                <td>{{ article.owner }}</td>
             </tr>
             {% endfor %}
             </tbody>
