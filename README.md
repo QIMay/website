@@ -1,1 +1,1 @@
-# BBS Development based on Django framework
+# BBS Development based on Django
